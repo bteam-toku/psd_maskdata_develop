@@ -18,3 +18,8 @@ COPY ./psd_maskdata ./psd_maskdata
 
 # コンテナ起動時のデフォルトコマンド
 ENTRYPOINT ["python", "-m", "psd_maskdata"]
+
+# メタデータの追加
+LABEL org.opencontainers.image.source="https://github.com/bteam-toku/psd_maskdata_develop.git"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.description="PSDマスク情報エクスポート（Dockerコンテナ）"
