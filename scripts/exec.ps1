@@ -9,10 +9,10 @@ function Invoke-Batch {
     $fullCurrentPath = Get-Location
 
     docker run -it --rm `
-        -v "${fullInPath}:/data/input" `
-        -v "${fullOutPath}:/data/output" `
         -v "${fullCurrentPath}:/data" `
-        ghcr.io/bteam-toku/psd_maskdata:latest --input /data/input --output /data/output
+        -v "${fullInPath}:/app/input" `
+        -v "${fullOutPath}:/app/output" `
+        ghcr.io/bteam-toku/psd_maskdata:latest --input /app/input --output /app/output
 }
 
 # 一つ上の親ディレクトリをカレントフォルダリに設定（環境に合わせて変更してください）
