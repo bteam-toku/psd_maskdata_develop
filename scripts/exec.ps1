@@ -6,10 +6,12 @@ function Invoke-Batch {
     )
     $fullInPath = Join-Path (Get-Location) $in
     $fullOutPath = Join-Path (Get-Location) $out
+    $fullCurrentPath = Get-Location
 
     docker run -it --rm `
         -v "${fullInPath}:/data/input" `
         -v "${fullOutPath}:/data/output" `
+        -v "${fullCurrentPath}:/data" `
         ghcr.io/bteam-toku/psd_maskdata:latest --input /data/input --output /data/output
 }
 
