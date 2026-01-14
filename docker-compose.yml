@@ -1,0 +1,9 @@
+services:
+  psd_maskdata:
+    build: .
+    image: ghcr.io/bteam-toku/psd_maskdata:latest
+    container_name: psd_maskdata_container
+    environment:
+      - IS_DOCKER=true
+    volumes:
+      - .:/data

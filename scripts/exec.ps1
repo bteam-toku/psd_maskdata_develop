@@ -1,0 +1,20 @@
+# バッチ実行関数
+function Invoke-Batch {
+    param (
+        [string]$in = "./input",
+        [string]$out = "./output"
+    )
+    $fullInPath = Join-Path (Get-Location) $in
+    $fullOutPath = Join-Path (Get-Location) $out
+
+    docker run -it --rm `
+        -v "${fullInPath}:/data/input" `
+        -v "${fullOutPath}:/data/output" `
+        ghcr.io/bteam-toku/psd_maskdata:latest --input /data/input --output /data/output
+}
+
+# 一つ上の親ディレクトリをカレントフォルダリに設定（環境に合わせて変更してください）
+Set-Location -Path (Join-Path $PSScriptRoot "..")
+
+# psd_maskdataの実行
+Invoke-Batch -in ./input -out ./output

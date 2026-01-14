@@ -1,0 +1,4 @@
+# --- パス設定 ---
+# プロジェクトルートディレクトリからの相対パスで指定。Docker環境では /data 以下にマウントされます。
+input_path: "input"
+output_path: "output"

@@ -1,0 +1,1 @@
+from .default_psd_export_adaptor import DefaultPsdExportAdaptor

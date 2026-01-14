@@ -1,9 +1,9 @@
-from bteam_utils import CommonXML
+from abc import ABC, abstractmethod
 from psd_tools import PSDImage
 import xml.etree.ElementTree as Et
 import os
 
-class BasePsdExport:
+class BasePsdAnalyze(ABC):
     #
     # Constructor / Destructor
     #
@@ -20,13 +20,16 @@ class BasePsdExport:
     #
     # public methods
     #
-    def export_layer_to_xml(self, infile_path:str, outfile_path:str) -> None:
-        """PSDレイヤー情報のXMLエクスポート
+    def analyze_layer_to_xml(self, infile_path:str) -> Et.Element:
+        """PSDレイヤー情報のXML解析
+
+        このメソッドはPSDファイルを解析し、そのレイヤー情報をXMLのElementとして返します。
 
         Args:
             psd (PSDImage): PSDImageオブジェクト
             infile_path (str): 入力ファイルパス
-            outfile_path (str): 出力ファイルパス
+        Returns:
+            Et.Element: XMLのRoot要素
         """
         # PSDファイルの読み込み
         psd = PSDImage.open(infile_path)
@@ -36,9 +39,8 @@ class BasePsdExport:
         root.set('name', psd_name)
         for layer in psd:
             self._build_xml_recursive(layer, root)
-        # XMLファイルの保存
-        common_xml = CommonXML()
-        common_xml.save_xml(root, outfile_path)
+        # XMLのRoot要素を返す
+        return(root)
 
     #
     # protected methods

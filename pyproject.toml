@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "psd_maskdata"
+version = "0.1.0"
+
+# 依存ライブラリ
+dependencies = [
+    "PyYAML",
+    "psd-tools",
+    "bteam_utils @ git+https://github.com/bteam-toku/bteam_utils.git",
+]
+
+[tool.setuptools]
+packages = ["psd_maskdata"]
