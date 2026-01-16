@@ -11,13 +11,15 @@ WORKDIR /app
 # requirements.txtをコンテナにコピー
 COPY ./requirements.txt .
 # 依存関係をインストール
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # スクリプトをコンテナにコピー
 COPY ./psd_maskdata ./psd_maskdata
 COPY ./settings.yaml .
 COPY ./pyproject.toml .
 
+# IS_DOCKER環境変数を設定
+ENV IS_DOCKER=true
 # 標準出力がバッファリングされないよう設定（C#側でリアルタイムに進捗を拾うため）
 ENV PYTHONUNBUFFERED=1
 

@@ -11,7 +11,7 @@ function Invoke-Batch {
 # 一つ上の親ディレクトリをカレントフォルダリに設定（環境に合わせて変更してください）
 Set-Location -Path (Join-Path $PSScriptRoot "..")
 # venvの有効化
-. .\env.ps1
+.\scripts\env.ps1
 
 # バッチ実行
 Invoke-Batch -in ./input -out ./output
